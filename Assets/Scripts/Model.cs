@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public struct Card
 {
-    public int Suit { get; set; }
-    public int Point { get; set; }
+    public int Suit { get; }
+    public int Point { get; }
+
+    public Card(int suit, int point)
+    {
+        Suit = suit;
+        Point = point;
+    }
 
     public bool Equals(Card other)
     {
@@ -28,7 +35,14 @@ public struct Card
 
 public struct CardAction
 {
-    public int Source { get; set; }
-    public int Destination { get; set; }
-    public List<Card> Content { get; set; }
+    public int Source { get; }
+    public int Destination { get; }
+    public List<Card> Content { get; }
+
+    public CardAction(int source, int destination, IEnumerable<Card> content)
+    {
+        Source = source;
+        Destination = destination;
+        Content = content.ToList();
+    }
 }
